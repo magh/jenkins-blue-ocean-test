@@ -10,7 +10,7 @@ pipeline {
                 '''
       }
     }
-    stage('Build') {
+    stage('Group name') {
       steps {
         sh 'mvn -Dmaven.test.failure.ignore=true install'
       }
@@ -61,6 +61,11 @@ pipeline {
     stage('Build javarepo') {
       steps {
         build 'javarepo_1.0.x_ci'
+      }
+    }
+    stage('Code Review') {
+      steps {
+        echo 'Code Review'
       }
     }
   }
