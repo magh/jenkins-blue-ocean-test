@@ -45,6 +45,12 @@ pipeline {
             input 'Waiting for interactive input'
           }
         }
+        stage('Petter Test') {
+          steps {
+            sleep 2
+            input 'Wake up petter?'
+          }
+        }
       }
     }
     stage('Deploy') {
