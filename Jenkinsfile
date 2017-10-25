@@ -10,7 +10,7 @@ pipeline {
                 '''
       }
     }
-    stage('Group name') {
+    stage('Build') {
       steps {
         sh 'mvn -Dmaven.test.failure.ignore=true install'
       }
@@ -20,6 +20,16 @@ pipeline {
           
         }
         
+      }
+    }
+    stage('Build javarepo') {
+      steps {
+        build 'javarepo_1.0.x_ci'
+      }
+    }
+    stage('Code Review') {
+      steps {
+        echo 'Code Review'
       }
     }
     stage('Test') {
@@ -56,16 +66,6 @@ pipeline {
     stage('Deploy') {
       steps {
         echo 'Deploying....'
-      }
-    }
-    stage('Build javarepo') {
-      steps {
-        build 'javarepo_1.0.x_ci'
-      }
-    }
-    stage('Code Review') {
-      steps {
-        echo 'Code Review'
       }
     }
   }
