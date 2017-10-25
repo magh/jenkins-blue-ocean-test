@@ -52,6 +52,11 @@ pipeline {
         echo 'Deploying....'
       }
     }
+    stage('Build javarepo') {
+      steps {
+        build 'javarepo_1.0.x_ci'
+      }
+    }
   }
   tools {
     maven 'maven 3.3.9'
