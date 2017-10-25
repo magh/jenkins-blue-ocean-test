@@ -57,4 +57,7 @@ pipeline {
     maven 'maven 3.3.9'
     jdk 'openjdk-8'
   }
+  environment {
+    triggers = 'cron(\'H/15 * * * *\')'
+  }
 }
