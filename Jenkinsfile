@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage('Initialize') {
       steps {
-        git(url: '/home/jenkins/gitrepos/javarepo.git', branch: 'master')
+        git(url: '/home/jenkins/gitrepos/javarepo.git', branch: 'master', poll: true)
         sh '''
                     echo "PATH = ${PATH}"
                     echo "M2_HOME = ${M2_HOME}"
