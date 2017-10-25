@@ -42,7 +42,7 @@ pipeline {
         stage('Manual Test') {
           steps {
             echo 'Manual Test'
-            input(message: 'Waiting for interactive input', id: 'myid', ok: 'OK', submitter: 'Submitting', submitterParameter: 'submitter parameter')
+            input 'Waiting for interactive input'
           }
         }
       }
