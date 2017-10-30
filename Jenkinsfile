@@ -27,9 +27,18 @@ pipeline {
         build 'javarepo_1.0.x_ci'
       }
     }
-    stage('Code Review') {
-      steps {
-        echo 'Code Review'
+    stage('fghfgh') {
+      parallel {
+        stage('Code Review') {
+          steps {
+            echo 'Code Review'
+          }
+        }
+        stage('fgfg') {
+          steps {
+            sleep 11
+          }
+        }
       }
     }
     stage('Test') {
