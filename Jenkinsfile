@@ -1,16 +1,7 @@
 pipeline {
   agent any
   stages {
-    stage('Initialize') {
-      steps {
-        git(url: '/home/jenkins/gitrepos/javarepo.git', branch: 'master', poll: true)
-        sh '''
-                    echo "PATH = ${PATH}"
-                    echo "M2_HOME = ${M2_HOME}"
-                '''
-      }
-    }
-    stage('Build') {
+    stage('Deploy to staging') {
       steps {
         sh 'mvn -Dmaven.test.failure.ignore=true install'
       }
@@ -22,23 +13,8 @@ pipeline {
         
       }
     }
-    stage('Build javarepo') {
-      steps {
-        build 'javarepo_1.0.x_ci'
-      }
-    }
-    stage('Code Review') {
-      steps {
-        sleep 11
-      }
-    }
     stage('Test') {
       parallel {
-        stage('Component Test') {
-          steps {
-            echo 'Component Test'
-          }
-        }
         stage('Upgrade Test') {
           steps {
             echo 'Upgrade Test'
@@ -55,9 +31,19 @@ pipeline {
             input 'Waiting for interactive input'
           }
         }
+        stage('End to end Test') {
+          steps {
+            sleep 1
+          }
+        }
+        stage('Security scanning') {
+          steps {
+            sleep 1
+          }
+        }
       }
     }
-    stage('Deploy') {
+    stage('Deploy to release') {
       steps {
         echo 'Deploying....'
       }
