@@ -17,7 +17,9 @@ pipeline {
       post {
         success {
           junit 'target/surefire-reports/**/*.xml'
+          
         }
+        
       }
     }
     stage('Build javarepo') {
@@ -25,18 +27,9 @@ pipeline {
         build 'javarepo_1.0.x_ci'
       }
     }
-    stage('fghfgh') {
-      parallel {
-        stage('Code Review') {
-          steps {
-            echo 'Code Review'
-          }
-        }
-        stage('fgfg') {
-          steps {
-            sleep 11
-          }
-        }
+    stage('Code Review') {
+      steps {
+        sleep 11
       }
     }
     stage('Test') {
@@ -60,12 +53,6 @@ pipeline {
           steps {
             echo 'Manual Test'
             input 'Waiting for interactive input'
-          }
-        }
-        stage('Petter Test') {
-          steps {
-            sleep 2
-            input 'Wake up petter?'
           }
         }
       }
